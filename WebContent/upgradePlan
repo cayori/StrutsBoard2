@@ -1,0 +1,52 @@
+****게시판 업그레이드****
+
+***테이블 업그레이드
+    + boardVO
+
+
+1. 검색기능 추가
+   : boardList.jsp : 검색 폼 추가, 제목에 댓글표시
+   : boardSQL.xml : 검색관련 쿼리문 추가 + 테이블이름,시퀀스이름 수정
+   : listAction : 검색관련 search() 추가
+   : pagingAction : 검색관련 페이징코드 추가
+
+2. 답변글기능 추가
+   : 답변달기 버튼 boardView.jsp에 추가
+     replyForm.action?no=<s:property value="no" />&currentPage=<s:property value="currentPage" />
+   : boardVO
+   : struts.xml에 replyForm,replyAction을 추가
+   : boardSQL.xml : 답변관련 쿼리문 추가
+   : boardWrite.jsp : 답변관련 코드 추가
+   : writeAction : 답변관련 코드 추가
+
+3.댓글 기능 추가
+   : boardView.jsp에 댓글관련 폼 추가
+                     댓글 리스트기능 추가
+   : cboardVO 		      
+   : boardSQL.xml : 댓글관련 쿼리 추가
+   : struts.xml에 writeCommentAction을 추가(댓글입력)
+     댓글 삭제시 비밀번호폼, 처리, 삭제 Action 추가
+     checkForm2, checkAction2, deleteAction2를 추가
+   : checkPassword2.jsp, checkSuccess.jsp(코드추가)
+   : viewAction : 비밀번호처리, 삭제기능 코드 추가
+   : deleteAction : 댓글 삭제 메소드 추가
+   : writeCommentAction : 댓글 입력 파일 추가
+
+4.댓글에 댓글
+5.리스트에 댓글개수 표시
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

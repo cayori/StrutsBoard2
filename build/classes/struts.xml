@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<!-- 용량제한 100MB 로 설정 -->
+	<constant name="struts.multipart.maxSize" value="104857600" />
+	<constant name="struts.multipart.saveDir" value="C:\upload2\temp" />
+	
+	<package name="board" extends="struts-default">
+<!--  	글로벌 예외처리 화면설정
+		<global-results>
+			<result name="error">/board/pageError.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception" />
+		</global-exception-mappings>
+-->
+ 		<!-- 게시판 리스트 액션 -->
+ 		<action name="listAction" class="board.ListAction">
+ 			<result>/board/boardList.jsp</result>
+ 		</action>
+ 		
+ 		<!-- 게시판 글쓰기 액션 -->
+ 		<action name="writeForm" class="board.WriteAction" method="form">
+ 			<result>/board/boardWrite.jsp</result>
+ 		</action>
+ 		<action name="writeAction" class="board.WriteAction">
+ 			<result type="redirect-action">
+ 				<param name="actionName">listAction</param>
+ 			</result>
+ 		</action>
+ 		<!-- 게시판 답변글쓰기 액션 -->
+ 		<action name="replyForm" class="board.WriteAction" method="reply">
+ 			<result type="chain">writeForm</result>
+ 		</action>
+ 		<action name="replyAction" class="board.WriteAction">
+ 			<result type="redirect-action">
+ 				<param name="actionName">listAction</param>
+ 			</result>
+ 		</action>
+ 		<!-- 게시판 글읽기 액션 -->
+ 		<action name="viewAction" class="board.ViewAction">
+ 			<result>/board/boardView.jsp</result>
+ 		</action>
+ 		<!-- 파일 다운로드 액션 -->
+ 		<action name="fileDownloadAction" class="board.ViewAction" method="download">
+ 			<result name="success" type="stream">
+ 				<param name="contentType">binary/octet-stream</param>
+ 				<param name="inputName">inputStream</param>
+ 				<param name="contentDisposition">${contentDisposition}</param>
+ 				<param name="contentLength">${contentLength}</param>
+ 				<param name="bufferSize">4096</param>
+ 			</result>
+ 		</action>
+ 		<!-- 비밀번호 체크액션 (글 수정/삭제) -->
+ 		<action name="checkForm" class="board.ViewAction" method="checkForm">
+ 			<result>/board/checkPassword.jsp</result>
+ 		</action>
+ 		<action name="checkAction" class="board.ViewAction" method="checkAction">
+ 			<result name="error">/board/checkError.jsp</result>
+ 			<result>/board/checkSuccess.jsp</result>
+ 		</action>
+ 		<!-- 비밀번호 체크액션 (댓글 삭제) -->
+ 		<action name="checkForm2" class="board.ViewAction" method="checkForm">
+ 			<result>/board/checkPassword2.jsp</result>
+ 		</action>
+ 		<action name="checkAction2" class="board.ViewAction" method="checkAction2">
+ 			<result name="error">/board/checkError.jsp</result>
+ 			<result>/board/checkSuccess.jsp</result>
+ 		</action>
+ 		<!-- 게시판 수정액션 -->
+ 		<action name="modifyForm" class="board.ViewAction">
+ 			<result type="chain">writeForm</result>
+ 		</action>
+ 		<action name="modifyAction" class="board.ModifyAction">
+ 			<result type="chain">viewAction</result>
+ 		</action>
+ 		
+ 		<!-- 글삭제 액션 -->
+ 		<action name="deleteAction" class="board.DeleteAction">
+ 			<result type="chain">listAction</result>
+ 		</action>
+ 		<!-- 댓글삭제 액션 -->
+ 		<action name="deleteAction2" class="board.DeleteAction" method="execute2">
+ 			<result type="chain">viewAction</result>
+ 		</action>
+ 		
+ 		<!-- 코멘트 작성관련 액션 -->
+ 		<action name="writeCommentAction" class="board.WriteCommentAction">
+ 			<result type="chain">viewAction</result>
+ 		</action>
+	</package>
+</struts>
