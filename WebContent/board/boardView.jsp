@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>스트럿츠2 게시판</title>
-	<link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
+	<link rel="stylesheet" href="/StrutsBoard2/board/common/css/css.css" type="text/css">
 	<script type="text/javascript">
 		function open_win_noresizable(url,name) {
 			var oWin = window.open(url,name,"scrollbars=no,status=no,width=330,height=150");
@@ -115,7 +115,7 @@
 							<s:hidden name="originno" value="%{resultClass.no}"/>
 							<!-- !!수정!! ... 근데 뭘? -->
 							<s:hidden name="no" value="%{resultClass.no}"/>
-							<s:hidden name="currentpage" value="%{currentPage}"/>
+							<s:hidden name="currentPage" value="%{currentPage}"/>
 							<!-- !!수정!! ... 근데 뭘? -->
 							<td align="left">
 								<s:textarea name="content" theme="simple" value="" cols="60" rows="3" />
@@ -135,7 +135,7 @@
 		</tr>
 		<!-- 댓글쓰기 완료 -->
 		<!-- 댓글보기 시작 -->
-		<s:iterator value="commentlist" status="stat">
+		<s:iterator value="commentList" status="stat">
 			<tr>
 				<td height="10" width="130" align="center">
 					<s:property value="name"/><br>
@@ -152,7 +152,7 @@
 		</s:iterator>
 		<tr>
 			<td colspan="2" height="10">
-				<s:if test="commentlist.size() <= 0">
+				<s:if test="commentList.size() <= 0">
 				댓글없음
 				</s:if>
 			</td>

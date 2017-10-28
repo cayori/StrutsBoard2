@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>스트럿츠2 게시판</title>
-	<link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
+	<link rel="stylesheet" href="/StrutsBoard2/board/common/css/css.css" type="text/css">
 	<script type="text/javascript">
 		function fileName(){
 			var fname = document.all.upload.value;

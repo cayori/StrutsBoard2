@@ -49,7 +49,7 @@
 					<s:if test="re_level > 0">
 						<c:forEach var="i" begin="${re_level }" end="0">└</c:forEach>
 					</s:if>
-					&nbsp;<s:a href="%{viewURL}"><s:property value="subject"/></s:a>[<s:property value="ccount"/>]</td>
+					&nbsp;<s:a href="%{viewURL}"><s:property value="subject"/></s:a><s:if test="ccount > 0">&nbsp;[<s:property value="ccount"/>]</s:if></td>
 				<td align="center">
 					<s:property value="name"/></td>
 				<td align="center">

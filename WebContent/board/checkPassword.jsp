@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>비밀번호 확인</title>
-	<link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
+	<link rel="stylesheet" href="/StrutsBoard2/board/common/css/css.css" type="text/css">
 </head>
 <body>
 	<h2>비밀번호 확인</h2>

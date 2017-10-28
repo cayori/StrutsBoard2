@@ -13,6 +13,8 @@ public class WriteCommentAction extends ActionSupport {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
+	private BoardVO paramClass;
+	
 	private CboardVO cParamClass;
 	private CboardVO cResultClass;
 	
@@ -47,6 +49,11 @@ public class WriteCommentAction extends ActionSupport {
 		cParamClass.setRegdate(today.getTime());
 		
 		sqlMapper.insert("insertComment", cParamClass);
+		
+		paramClass = new BoardVO();
+		paramClass.setNo(getOriginno());
+		
+		sqlMapper.update("increaseCcount", paramClass);
 		
 		return SUCCESS;
 	}

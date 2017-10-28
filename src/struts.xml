@@ -84,7 +84,14 @@
  		</action>
  		<!-- 댓글삭제 액션 -->
  		<action name="deleteAction2" class="board.DeleteAction" method="execute2">
- 			<result type="chain">viewAction</result>
+ <!--  		<result type="redirectAction">
+ 	     		<param name="actionName">/viewAction</param>
+ 	      		<param name="no">${originno}</param>
+            		<param name="currentPage">${currentPage}</param>				====>>>>> 이런식으로 하니 ognl.NoSuchPropertyException 경고가 엄청 뜸.... 작동이 되기는 함....
+        		</result>  -->
+        		<result name="success" type="redirectAction">
+        			<![CDATA[viewAction?no=${originno}&currentPage=${currentPage}]]>
+        		</result>
  		</action>
  		
  		<!-- 코멘트 작성관련 액션 -->

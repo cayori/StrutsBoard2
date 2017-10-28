@@ -22,7 +22,9 @@ public class DeleteAction extends ActionSupport {
 	private int currentPage;
 	private String fileUploadPath = "C:\\upload2\\";
 	private int no;
+	private int originno;
 	
+
 	// 생성자
 	public DeleteAction() throws IOException {
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");
@@ -56,10 +58,21 @@ public class DeleteAction extends ActionSupport {
 		cParamClass.setNo(getNo());
 		sqlMapper.update("deleteComment",cParamClass);
 		
+		paramClass = new BoardVO();
+		paramClass.setNo(getOriginno());
+		
+		sqlMapper.update("decreaseCcount", paramClass);
+		
 		return SUCCESS;
 	}
 	
 
+	public int getOriginno() {
+		return originno;
+	}
+	public void setOriginno(int originno) {
+		this.originno = originno;
+	}
 	public BoardVO getParamClass() {
 		return paramClass;
 	}

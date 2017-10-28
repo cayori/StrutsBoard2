@@ -51,12 +51,7 @@ public class ListAction extends ActionSupport {
 		if(page.getEndCount() < totalCount)	lastCount = page.getEndCount() + 1;
 		// 전체 리스트에서 현재 페이지 만큼의 리스트만 가져온다.
 		list = list.subList(page.getStartCount(), lastCount);
-		
-		for(int i=0; i<list.size(); i++) {
-			int ccount = (int) sqlMapper.queryForObject("commentCount", list.get(i).getNo());
-			list.get(i).setCcount(ccount);
-		}
-		
+				
 		return SUCCESS;
 	}
 

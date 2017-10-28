@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="/StrutsBoard/board/common/css/css.css" type="text/css">
+	<link rel="stylesheet" href="/StrutsBoard2/board/common/css/css.css" type="text/css">
 	<script type="text/javascript">
 		function locationURL(){
 			if(window.name == 'modify'){
@@ -14,7 +14,7 @@
 				window.opener.parent.location.href='deleteAction.action?no=<s:property value="no"/>&currentPage=<s:property value="currentPage"/>';
 			}else if(window.name == 'cdelete'){
 				alert("댓글이 삭제되었습니다");
-				window.opener.parant.location.href='deleteAction2.action?no=<s:property value="no"/>&originno=<s:property value="originno"/>&currentPage=<s:property value="currentPage"/>';
+				window.opener.parent.location.href='deleteAction2.action?no=<s:property value="no"/>&originno=<s:property value="originno"/>&currentPage=<s:property value="currentPage"/>';
 			}
 			window.close();		
 		}

@@ -55,6 +55,8 @@ public class ViewAction extends ActionSupport {
 		resultClass = (BoardVO)sqlMapper.queryForObject("selectOne",getNo());
 		// 본문의 줄바꿈 처리
 		resultClass.setContent(resultClass.getContent().replace("\r\n","<br>"));
+		// 댓글 넣어줘야지....
+		commentList = sqlMapper.queryForList("commentSelectAll", getNo());
 		
 		return SUCCESS;
 	}
@@ -93,7 +95,7 @@ public class ViewAction extends ActionSupport {
 		cParamClass.setNo(getNo());
 		cParamClass.setPassword(getPassword());
 		cParamClass.setOriginno(getOriginno());
-		cResultClass = (CboardVO) sqlMapper.queryForObject("selectPassword2", cParamClass);
+		cResultClass = (CboardVO) sqlMapper.queryForObject("selectPasswordForComment", cParamClass);
 		
 		if(cResultClass == null)
 			return ERROR;

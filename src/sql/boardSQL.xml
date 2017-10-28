@@ -20,6 +20,7 @@
 		<result property="ref" column="ref"/>
 		<result property="re_step" column="re_step"/>
 		<result property="re_level" column="re_level"/>
+		<result property="ccount" column="ccount" />
 	</resultMap>
 	<!-- 리절트 맵 포 댓글 -->
 	<resultMap id="commentRes" class="comment">
@@ -56,10 +57,7 @@
 		WHERE originno=#no#
 		ORDER BY no DESC
 	</select>
-	<select id="commentCount" resultMap="commentRes" parameterClass="int">
-		SELECT COUNT(*) FROM boardjp2c
-		<include refid="where-no"/>
-	</select>
+
 	<select id="selectOne" resultMap="boardRes" parameterClass="int">
 		<include refid="select-all" />
 		<include refid="where-no" />
@@ -77,7 +75,7 @@
 	</select>
 	<select id="selectSearchContent" resultMap="boardRes" parameterClass="int">
 		<include refid="select-all"/>
-		WHERE name like #searchKeyword#
+		WHERE content like #searchKeyword#
 		ORDER BY no DESC
 	</select>
 	<!-- 검색로직 추가끝 -->
@@ -106,7 +104,7 @@
 	</insert>
 	<insert id="insertComment" parameterClass="comment">
 		INSERT INTO boardjp2c			(no,originno,name,password,content,regdate)
-		VALUES	(SBOARDJP2_NO_SEQ.NEXTVAL,#originno#,#name#,#password#,#content#,#regdate#)
+		VALUES	(BOARDJP2C_NO_SEQ.NEXTVAL,#originno#,#name#,#password#,#content#,#regdate#)
 	</insert>
 	
 	<!-- update 쿼리문 정의 -->
@@ -129,6 +127,15 @@
 	<update id="updateReplyStep" parameterClass="board">
 		UPDATE sboardjp2 SET re_step = re_step + 1
 		WHERE ref = #ref# AND re_step>#re_step#
+	</update>
+	<!-- 댓글쓸때 BoardVO.ccount 늘리기 -->
+	<update id="increaseCcount" parameterClass="board">
+		UPDATE sboardjp2 SET ccount = ccount + 1
+		<include refid="where-no"/>
+	</update>
+	<update id="decreaseCcount" parameterClass="board">
+		UPDATE sboardjp2 SET ccount = ccount - 1
+		<include refid="where-no"/>
 	</update>
 	
 	<!-- delete 쿼리문 정의 -->
